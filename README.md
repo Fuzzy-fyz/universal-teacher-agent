@@ -8,8 +8,9 @@ An adaptive tutor custom agent for Visual Studio Code and GitHub Copilot. It can
 - Explains, diagnoses prerequisites, plans a learning path, and teaches through examples and practice.
 - Tracks evidence-based mastery from not-yet-assessed to transfer into unfamiliar contexts.
 - Analyzes errors, supports tests and exam prep, and recommends spaced review.
+- Uses an explicit source hierarchy and clearly distinguishes verified sources from general model knowledge.
 - Coaches projects while respecting learner authorship and course rules.
-- Responds in the learner's language without assuming a fixed student profile, subject, or persistent memory.
+- Responds in the learner's language without assuming a fixed student profile, subject, or memory shared across workspaces.
 - Offers conversational shortcuts such as `/plan`, `/learn`, `/practice`, `/test`, `/review`, `/progress`, and `/project`.
 
 ## Study memory
@@ -17,6 +18,12 @@ An adaptive tutor custom agent for Visual Studio Code and GitHub Copilot. It can
 During substantive learning sessions, the agent reads and maintains a `study/` folder at the root of the active workspace. It records session outcomes, demonstrated progress, recurring errors, learning goals, and suggested review topics so later sessions in that same workspace can continue from the notes.
 
 The agent preserves session and error history, distinguishes self-reports from demonstrated results, and follows more specific file and privacy rules in the host project. Learning records are not copied to this public repository. Memory is limited to the workspace files available to the agent: it is not shared across workspaces, cannot work when those files are inaccessible, and does not guarantee perfect recall. Review dates are suggestions, not scheduled reminders.
+
+## Sources and factual accuracy
+
+The agent prioritizes learner-provided course materials and requirements, then primary or authoritative sources, followed by reputable textbooks and reviews. For current, specialized, disputed, high-stakes, or explicitly sourced questions, it checks available tools and workspace materials, cites only what it actually inspected, and distinguishes those findings from its general model knowledge. It does not invent citations or claim that a source was checked when browsing or file access was unavailable.
+
+If a reference is likely to be useful again, the agent may record its bibliographic details, topic, and last-checked date in `study/SOURCES.md`. A saved reference is not automatically re-verified for a later answer. The agent cannot browse the web unless the host environment provides a suitable search or browser tool.
 
 ## Install in a workspace
 
@@ -50,7 +57,7 @@ No license is granted. The repository is public for viewing, but reuse, modifica
 - Обучение через примеры, практику, подсказки и конкретную обратную связь.
 - Повторение, проверка знаний, подготовка к экзаменам и сопровождение проектов.
 - Работа на языке ученика и адаптация к запрошенному уровню.
-- Без заранее заданного профиля, программы обучения и обещаний постоянной памяти.
+- Без заранее заданного профиля или программы обучения; учебная память хранится только в доступных файлах текущего рабочего пространства.
 
 ## Установка в проект
 
@@ -61,6 +68,8 @@ No license is granted. The repository is public for viewing, but reuse, modifica
 Агент подстраивает обучение под цель, исходный уровень и ограничения ученика; оценивает освоение по наблюдаемым результатам, разбирает ошибки и предлагает интервалы повторения. Команды `/plan`, `/learn`, `/practice`, `/test`, `/review`, `/progress` и `/project` работают как текстовые сокращения, если их не перехватывает сам интерфейс.
 
 Во время содержательных занятий агент читает и поддерживает папку `study/` в корне текущего рабочего пространства: записывает итоги занятий, подтверждённый прогресс, повторяющиеся ошибки, цели обучения и темы для повторения. Эти записи остаются в рабочем пространстве и не копируются в публичный репозиторий агента. Память доступна только пока агенту доступны эти файлы; между разными рабочими пространствами она не переносится. Интервалы повторения — рекомендации, а не назначенные напоминания.
+
+При ответах он отдаёт приоритет материалам ученика и первичным или авторитетным источникам. Для актуальных, специальных, спорных или важных утверждений он проверяет доступные источники и ссылается только на реально просмотренные материалы; общие знания модели не выдаёт за внешнюю проверку. Список полезных ссылок с датой проверки при необходимости хранится в `study/SOURCES.md`. Веб-поиск возможен только при наличии соответствующего инструмента в среде Copilot.
 
 ## Лицензия
 
